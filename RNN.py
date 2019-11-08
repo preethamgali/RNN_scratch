@@ -96,9 +96,7 @@ def train(U,V,W,name):
         x_t.append(x)
         error+= cross_entropy(yhat,y_t[i])
             
-        h_t.append(h)
         h_activation_t.append(h_activation)
-        h_out_t.append(h_out)
         h_out_activation_t.append(h_out_activation)
         yhat_t.append(yhat)
         mess = mess+get_letter(yhat)
@@ -153,13 +151,6 @@ def train(U,V,W,name):
         dh_activation_dU = dh_activation_current_dU
 
 
-
-
-        # print("111111111111111111111111")
-        # print(dh_activation_dW)
-        # print(dh_activation_dU)
-
-
         for j in range(i):
             dh_activation_dW = dh_activation_dW + np.matmul(dh_activation_dW_t[i-j-1],dh_activation_dh_activation_pre[j])
             dh_activation_dU = dh_activation_dU + np.matmul(dh_activation_dU_t[i-j-1],dh_activation_dh_activation_pre[j])
@@ -190,6 +181,7 @@ def train(U,V,W,name):
 for i in range(100):
     for name in ["goutham","preetham"]:
         U,V,W = train(U,V,W,name)
+
 def test(U,V,W,name):
     
     name = name
